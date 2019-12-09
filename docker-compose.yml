@@ -2,7 +2,7 @@ version: '2'
 services:
   mysql:
         image: mysql:8.0
-        container_name: mysql-server-80
+        container_name: mysql-server1-80
         command: --default-authentication-plugin=mysql_native_password
         working_dir: /application
         volumes:
@@ -14,9 +14,9 @@ services:
           - MYSQL_USER=root
           - MYSQL_PASSWORD=kotka
         ports:
-          - "8084:3306"
+          - "8085:3306"
   website:
-    container_name: php72
+    container_name: php7-2
     build:
       context: ./
     links:
@@ -24,6 +24,6 @@ services:
     volumes:
       - ./src:/var/www/html
     ports:
-      - 8000:80
+      - 8001:80
     depends_on:
       - mysql
